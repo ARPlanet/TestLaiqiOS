@@ -59,7 +59,7 @@
     }
     else
     {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@", @"681758165"]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://itunes.apple.com/us/app/apple-store/id681758165?mt=8"]];
         [[UIApplication sharedApplication] openURL:url];
     }
 }
