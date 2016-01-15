@@ -16,28 +16,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Button init
-    UIButton *goAppButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    goAppButton.frame = CGRectMake(50.0f, 50.0f, 150.0f, 30.0f);
-    [goAppButton addTarget:self action:@selector(goMarqplus) forControlEvents:UIControlEventTouchUpInside];
-    [goAppButton setTitle:@"Go to Marqplus" forState:UIControlStateNormal];
-    [self.view addSubview:goAppButton];
+    //Button initialization
+    UIButton *goMarqPlusButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    goMarqPlusButton.frame = CGRectMake(0, 0, 150.0f, 30.0f);
+    [goMarqPlusButton addTarget:self action:@selector(goMarqplus) forControlEvents:UIControlEventTouchUpInside];
+    [goMarqPlusButton setTitle:@"Go to Marqplus" forState:UIControlStateNormal];
+    [self.view addSubview:goMarqPlusButton];
+    
+    //Autolayout
+    [goMarqPlusButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    NSLayoutConstraint *Button_Constraint= [NSLayoutConstraint  constraintWithItem:goMarqPlusButton
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0
+                                            ];
+    [self.view addConstraint:Button_Constraint];
+    
+    Button_Constraint= [NSLayoutConstraint   constraintWithItem:goMarqPlusButton
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.view
+                                                      attribute:NSLayoutAttributeTop
+                                                     multiplier:1.0
+                                                       constant:100.0
+                        ];
+    [self.view addConstraint:Button_Constraint];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)goMarqplus{
-    NSURL *url = [NSURL URLWithString:@"marqplus://"];
-    [self gotoMarqplusAPI:url];
-}
-
--(void)gotoMarqplusAPI:(NSURL *)appURL{
-    if ([[UIApplication sharedApplication] canOpenURL:appURL])
+    NSURL *url = [NSURL URLWithString:@"marqplus://com.marq.plus/"];
+    if ([[UIApplication sharedApplication] canOpenURL:url])
     {
-        [[UIApplication sharedApplication] openURL:appURL];
+        [[UIApplication sharedApplication] openURL:url];
     }
     else
     {
